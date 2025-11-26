@@ -1,3 +1,4 @@
+using Core.Tools;
 using UnityEngine;
 
 namespace UI.Tools
@@ -6,20 +7,24 @@ namespace UI.Tools
     /// class for components that want to display backend data without editing
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Observer<O, T> : MonoBehaviour where O : Core.Tools.Observable<T>
+    public abstract class Observer<O, T> : MonoBehaviour where O : Observable<T>
     {
-        protected abstract void UpdateFrontEnd(T value);
+        protected O _observable { get; private set; }
+
+        protected abstract void ValueChanged(T value);
         public virtual void Link(O observable)
         {
-            observable.OnValueChanged += UpdateFrontEnd;
-            UpdateFrontEnd(observable.Value);
+            if (_observable != null) Unlink(_observable);
+
+            _observable = observable;
+            observable.ValueChanged += ValueChanged;
+            ValueChanged(observable);
         }
 
         public virtual void Unlink(O observable)
         {
-            observable.OnValueChanged -= UpdateFrontEnd;
+            observable.ValueChanged -= ValueChanged;
+            _observable = null;
         }
     }
-
-    public abstract class Observer<T> : Observer<Core.Tools.Observable<T>, T> { }
 }
