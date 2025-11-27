@@ -1,44 +1,34 @@
 using Core.Tools;
-using UI.Bar;
+using Graphics.Bar;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BarTesting : MonoBehaviour
 {
-    [SerializeField] private Bar _bar;
+    [SerializeField] private ChunkBar _bar;
 
-    [SerializeField] private Range _range;
+    [SerializeField] private Chunk _chunk;
 
     private void Awake()
     {
-        _range = new Range(4, 0, 5);
+        _chunk = new Chunk(4, 0, 5);
     }
 
     private void Start()
     {
-        _bar.Link(_range);
+        _bar.Link(_chunk);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            _range.Value = -2;
-        }
-
         if (Input.GetKeyDown(KeyCode.A))
         {
-            _range.Value = 2;
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            _range.Value = 4;
+            _chunk.Value -= 0.5;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            _range.Value = 6;
+            _chunk.Value += 0.5;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace UI.Languages
+namespace Graphics.Languages
 {
     public class LanguageReadout : MonoBehaviour
     {

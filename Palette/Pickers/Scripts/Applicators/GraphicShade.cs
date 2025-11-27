@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Palettes
+namespace Graphics.Palettes
 {
     [CreateAssetMenu(fileName = "GraphicShade", menuName = "UI/Applicators/GraphicShade")]
     public class GraphicShade : ShadeApplicator<Graphic>

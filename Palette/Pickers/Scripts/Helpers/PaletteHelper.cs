@@ -1,6 +1,5 @@
-using UI.Palettes;
 using UnityEngine;
-namespace UI.Palettes
+namespace Graphics.Palettes
 {
     public abstract class PaletteHelper<T> : MonoBehaviour
     {

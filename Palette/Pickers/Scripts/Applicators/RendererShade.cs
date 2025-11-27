@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UI.Palettes
+namespace Graphics.Palettes
 {
     [CreateAssetMenu(fileName = "RendererShade", menuName = "UI/Applicators/RendererShade")]
     public class RendererShade : ShadeApplicator<Renderer>

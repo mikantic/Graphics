@@ -1,7 +1,7 @@
 using Core.Tools;
 using UnityEngine;
 
-namespace UI.Tools
+namespace Graphics.Tools
 {
     /// <summary>
     /// class for components that want to display backend data without editing

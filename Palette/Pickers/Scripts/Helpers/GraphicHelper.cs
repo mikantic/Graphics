@@ -1,10 +1,9 @@
-using UI.Palettes;
 using UnityEngine;
 using UnityEngine.UI;
-namespace UI.Palettes
+namespace Graphics.Palettes
 {
     [RequireComponent(typeof(Graphic))]
-    public class GraphicHelper : PaletteHelper<Renderer>
+    public class GraphicHelper : PaletteHelper<Graphic>
     {
         
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UI.Palettes
+namespace Graphics.Palettes
 {
     public abstract class PaletteApplicator<T> : Applicator
     {

@@ -1,8 +1,7 @@
-using UI.Palettes;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Palettes
+namespace Graphics.Palettes
 {
     public abstract class Applicator : ScriptableObject
     {

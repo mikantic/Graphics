@@ -1,6 +1,6 @@
 using System;
 
-namespace UI.Palettes
+namespace Graphics.Palettes
 {
     /// <summary>
     /// enum for all palette types
