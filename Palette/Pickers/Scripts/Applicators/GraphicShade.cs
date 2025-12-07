@@ -8,7 +8,8 @@ namespace Graphics.Palettes
     {
         public override void ApplyShade(Palette palette, Shade shade, Graphic target, int index = 0)
         {
-            target.color = palette.GetColor(shade);
+            //target.color = palette.GetColor(shade);
+            target.material.SetColor("_Color", palette.GetColor(shade));
         }
     }
 }

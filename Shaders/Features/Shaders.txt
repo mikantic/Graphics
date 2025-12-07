@@ -1,0 +1,86 @@
+-------------------------------------------------
+---- GENERAL HLSL FILE --------------------------
+
+#ifndef HLSL_INCLUDED
+#define HLSL_INCLUDED
+
+#include "../Helpers/Helper.hlsl"
+
+struct Attributes {
+    float4 positionOS   : POSITION;
+};
+
+struct Varyings {
+    float4 positionCS   : SV_POSITION;
+};
+
+Varyings Vertex(Attributes IN)
+{
+    Varyings OUT;
+    OUT.positionCS = GetPositionCS(IN.positionOS);
+    return OUT;
+}
+
+float4 Fragment(Varyings IN) : SV_Target
+{    
+    return 0;
+}
+
+#endif
+
+-------------------------------------------------
+---- GENERAL SHADER FILE ------------------------
+
+Shader "Custom/Feature"
+{
+    Properties
+    {
+        _MainTex ("MainTex", 2D) = "white" {}
+    }
+
+    SubShader
+    {
+        Pass
+        {
+            Tags 
+            { 
+                "RenderPipeline" = "UniversalPipeline"
+            }
+
+            ZWrite On
+            ZTest LEqual
+
+            HLSLPROGRAM
+            #pragma vertex Vertex
+            #pragma fragment Fragment
+
+            #include "Feature.hlsl"
+            ENDHLSL
+        }
+    }
+}
+
+-------------------------------------------------
+---- FOLDER STUCTURE ----------------------------
+
+/ Shaders
+    / Features
+        / Feature.hlsl
+    / Shaders
+        / Feature.shader
+    / Helpers
+        / Helper.hlsl
+
+OR
+
+/ Shaders
+    / Feature1
+        / Feature1.hlsl
+        / Feature1.shader
+    / Feature2
+        / Feature2.hlsl
+        / Feature2.shader
+    / Helpers
+        / Helper.hlsl
+
+-------------------------------------------------
