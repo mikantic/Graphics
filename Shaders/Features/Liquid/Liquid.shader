@@ -1,4 +1,4 @@
-Shader "Custom/Water"
+Shader "Custom/Liquid"
 {
     Properties
     {
@@ -9,7 +9,9 @@ Shader "Custom/Water"
         _Cast ("Cast", Color) = (1, 1, 1, 1)
         _Threshold ("Threshold", Range(0.001, 100)) = 0.3
         _Alpha ("Alpha", Range(0, 1)) = 1
+        _Height ("Height", Range(0, 1)) = 0.5
         _NoiseMap ("NoiseMap", 2D) = "white" {}
+        _WaveMap ("WaveMap", 2D) = "white" {}
     }
 
     SubShader
@@ -32,7 +34,7 @@ Shader "Custom/Water"
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
 
-            #include "Water.hlsl"
+            #include "Liquid.hlsl"
             ENDHLSL
         }
 

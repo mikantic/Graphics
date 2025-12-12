@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water
-  m_Shader: {fileID: 4800000, guid: bbdd896da0bba6048a573453d6f3012d, type: 3}
+  m_Name: Crystal
+  m_Shader: {fileID: 4800000, guid: ae2fb11a01f98b44f89556a58ddd8ba5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -16,24 +16,27 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _NoiseMap:
-        m_Texture: {fileID: 2800000, guid: bccb27ad514451941bda5f8c8dc51b88, type: 3}
+    - _LightMap:
+        m_Texture: {fileID: 2800000, guid: 1e9a8d6c302ff964d88cf41a1ee334ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseMap:
+        m_Texture: {fileID: 2800000, guid: 048e3082a30cb2147a70ba7c31e6b157, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 1.66, y: -0.54}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.921
-    - _Threshold: 0.15
+    - _Power: 3
+    - _Sharpness: 2.11
     m_Colors:
     - _Cast: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Core: {r: 1, g: 1, b: 1, a: 1}
     - _Lit: {r: 1, g: 1, b: 1, a: 1}
     - _Shine: {r: 1, g: 1, b: 1, a: 1}

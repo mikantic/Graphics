@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass
-  m_Shader: {fileID: 4800000, guid: d8a5f4ab8d46368408106f744d2897e8, type: 3}
+  m_Name: Liquid
+  m_Shader: {fileID: 4800000, guid: bbdd896da0bba6048a573453d6f3012d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -16,29 +16,26 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _LightMap:
-        m_Texture: {fileID: 2800000, guid: 1e9a8d6c302ff964d88cf41a1ee334ef, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _NoiseMap:
         m_Texture: {fileID: 2800000, guid: bccb27ad514451941bda5f8c8dc51b88, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NoiseTex:
-        m_Texture: {fileID: 2800000, guid: bccb27ad514451941bda5f8c8dc51b88, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: 2.61, y: 1.1}
+        m_Offset: {x: 7.35, y: 0.04}
+    - _WaveMap:
+        m_Texture: {fileID: 2800000, guid: 805200116eff9224090dfac866b10fe4, type: 3}
+        m_Scale: {x: 2.16, y: 1.9}
+        m_Offset: {x: 1.58, y: 0.68}
     m_Ints: []
     m_Floats:
-    - _HeightScaler: 0.21
-    - _MinNoise: 0.87
+    - _Alpha: 1
+    - _Height: 0.131
+    - _Threshold: 0.3
     m_Colors:
     - _Cast: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

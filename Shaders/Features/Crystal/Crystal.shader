@@ -1,4 +1,4 @@
-Shader "Custom/Shading"
+Shader "Custom/Crystal"
 {
     Properties
     {
@@ -7,7 +7,8 @@ Shader "Custom/Shading"
         _Tone ("Tone", Color) = (1, 1, 1, 1)
         _Core ("Core", Color) = (1, 1, 1, 1)
         _Cast ("Cast", Color) = (1, 1, 1, 1)
-
+        _Power ("Power", Range(0, 5)) = 1
+        _Sharpness ("Sharpness", Range(0, 5)) = 1
         _LightMap ("LightMap", 2D) = "white" {}
         _NoiseMap ("NoiseMap", 2D) = "white" {}
     }
@@ -33,7 +34,7 @@ Shader "Custom/Shading"
             #pragma vertex Vertex
             #pragma fragment Fragment
 
-            #include "Shading.hlsl"
+            #include "Crystal.hlsl"
             
             ENDHLSL
         }
