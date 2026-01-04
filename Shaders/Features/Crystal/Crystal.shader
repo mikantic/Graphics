@@ -8,6 +8,7 @@ Shader "Custom/Crystal"
         _Core ("Core", Color) = (1, 1, 1, 1)
         _Cast ("Cast", Color) = (1, 1, 1, 1)
         _Power ("Power", Range(0, 5)) = 1
+        _Alpha ("Alpha", Range(0, 1)) = 0.75
         _Sharpness ("Sharpness", Range(0, 5)) = 1
         _LightMap ("LightMap", 2D) = "white" {}
         _NoiseMap ("NoiseMap", 2D) = "white" {}
@@ -21,10 +22,12 @@ Shader "Custom/Crystal"
             { 
                 "LightMode" = "UniversalForward"
                 "RenderPipeline"="UniversalPipeline"
-                "RenderType" = "Opaque"
+                "RenderType" = "Transparent"
             }
             ZWrite On
             ZTest LEqual
+            Blend SrcAlpha OneMinusSrcAlpha
+            //Cull Off
             
             HLSLPROGRAM
 

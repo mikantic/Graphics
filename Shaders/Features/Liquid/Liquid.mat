@@ -25,16 +25,16 @@ Material:
     m_TexEnvs:
     - _NoiseMap:
         m_Texture: {fileID: 2800000, guid: bccb27ad514451941bda5f8c8dc51b88, type: 3}
-        m_Scale: {x: 2.61, y: 1.1}
-        m_Offset: {x: 7.35, y: 0.04}
+        m_Scale: {x: 3, y: 3}
+        m_Offset: {x: 0, y: 0}
     - _WaveMap:
         m_Texture: {fileID: 2800000, guid: 805200116eff9224090dfac866b10fe4, type: 3}
-        m_Scale: {x: 2.16, y: 1.9}
-        m_Offset: {x: 1.58, y: 0.68}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _Alpha: 1
-    - _Height: 0.131
+    - _Height: 0.684
     - _Threshold: 0.3
     m_Colors:
     - _Cast: {r: 1, g: 1, b: 1, a: 1}
