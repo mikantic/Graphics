@@ -33,9 +33,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.35
-    - _Power: 1.36
-    - _Sharpness: 2.44
+    - _Alpha: 0.714
+    - _Power: 1.27
+    - _Sharpness: 5
     m_Colors:
     - _Cast: {r: 1, g: 1, b: 1, a: 1}
     - _Core: {r: 1, g: 1, b: 1, a: 1}

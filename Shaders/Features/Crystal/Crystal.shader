@@ -24,10 +24,8 @@ Shader "Custom/Crystal"
                 "RenderPipeline"="UniversalPipeline"
                 "RenderType" = "Transparent"
             }
-            ZWrite On
-            ZTest LEqual
             Blend SrcAlpha OneMinusSrcAlpha
-            //Cull Off
+            Cull Off
             
             HLSLPROGRAM
 

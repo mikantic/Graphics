@@ -47,7 +47,7 @@ Varyings Vertex(Attributes IN)
     OUT.positionCS = GetPositionCS(IN.positionOS);
 
     float3 worldPos = GetPositionWS(IN.positionOS);
-    float3 viewDir = normalize(GetCameraPositionWS() - worldPos);
+    float3 viewDir = normalize(_WorldSpaceCameraPos - worldPos);
     
     float2 uv = IN.uv * _NoiseMap_ST.xy + _NoiseMap_ST.zw;
     float noise = _Sharpness * SampleTexture(uv, _NoiseMap, sampler_NoiseMap);
@@ -71,7 +71,7 @@ float3 EvaluateLightingRamp(float light)
 
 float4 Fragment(Varyings IN) : SV_Target
 {    
-    float3 col = EvaluateLightingRamp(IN.fresnel);
+    float3 col = EvaluateLightingRamp(IN.fresnel * (IN.light + 1) / 2);
     return float4(col, _Alpha);
 }
 
