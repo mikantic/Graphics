@@ -5,14 +5,9 @@
 #include "../Helpers/Textures.hlsl"
 #include "../Helpers/Depth.hlsl"
 
-TEXTURE2D(_Texture);
-SAMPLER(sampler_Texture);
-float4 _Texture_ST;
-
 float _Threshold;
 float _Width;
 float _Darkness;
-float _Scratch;
 
 struct Attributes
 {
@@ -53,7 +48,7 @@ float4 Fragment(Varyings IN) : SV_Target
 {   
     float center = Linear01Depth(IN.uv);
 
-    float4 color = SampleTexture(TRANSFORM_TEX(IN.uv, _Texture), _Texture, sampler_Texture) * _Darkness;
+    float4 color = SampleTexture(IN.uv) * _Darkness;
     color.a = 1;
 
     if (ValidateDepth(center, IN.uv, float2(0, IN.texel.y * _Width))) return color;

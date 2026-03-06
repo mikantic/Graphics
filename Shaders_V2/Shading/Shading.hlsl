@@ -1,9 +1,9 @@
 #ifndef SHADING_INCLUDED
 #define SHADING_INCLUDED
 
+#include "../Helpers/Lighting.hlsl"
 #include "../Helpers/Helpers.hlsl"
 #include "../Helpers/Textures.hlsl"
-#include "ShadingHelper.hlsl"
 #include "../Helpers/Rim.hlsl"
 
 struct Attributes {
@@ -34,7 +34,7 @@ Varyings Vertex(Attributes IN)
 float4 Fragment(Varyings IN) : SV_Target
 {    
     float NdotL;
-    float light = GetLighting(IN.normalWS, IN.shadowCoord, NdotL); 
+    float light = GetLighting(IN.normalWS, IN.shadowCoord, IN.positionWS, NdotL); 
     float tex = SampleTexture(TRANSFORM_TEX(IN.uv, _Texture), _Texture, sampler_Texture);
     float3 color = EvaluateLightingRamp(light * tex * _Scaler) * tex;
     color = GetColorWithRim(color, NdotL, IN.positionWS, IN.normalWS);

@@ -31,9 +31,6 @@ Shader "Graphics/Shading"
             
             HLSLPROGRAM
 
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
-
             #pragma vertex Vertex
             #pragma fragment Fragment
 

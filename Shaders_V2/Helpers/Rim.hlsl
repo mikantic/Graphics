@@ -2,7 +2,6 @@
 #define RIM_HELPER_INCLUDED
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-#include "../Helpers/Lighting.hlsl"
 
 float _Rim;
 float _RimAngle;

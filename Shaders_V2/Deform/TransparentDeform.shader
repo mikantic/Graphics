@@ -37,11 +37,8 @@ Shader "Graphics/TransparentDeform"
             
             HLSLPROGRAM
 
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
-
-            #pragma vertex Vertex
-            #pragma fragment Fragment
+            #pragma vertex DeformVertex
+            #pragma fragment TransparentFragment
 
             #include "TransparentDeform.hlsl"
             

@@ -34,10 +34,7 @@ Shader "Graphics/Deform"
             
             HLSLPROGRAM
 
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
-
-            #pragma vertex Vertex
+            #pragma vertex DeformVertex
             #pragma fragment Fragment
 
             #include "Deform.hlsl"
