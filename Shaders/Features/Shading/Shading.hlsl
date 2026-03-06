@@ -11,11 +11,16 @@ float4 _Tone;
 float4 _Core;
 float4 _Cast;
 
+float _Scaler;
+
 TEXTURE2D(_LightMap);
 SAMPLER(sampler_LightMap);
 
 TEXTURE2D(_NoiseMap);
 SAMPLER(sampler_NoiseMap);
+
+TEXTURE2D(_Texture);
+SAMPLER(sampler_Texture);
 
 
 struct Attributes {
@@ -26,7 +31,8 @@ struct Attributes {
 
 struct Varyings {
     float4 positionCS   : SV_POSITION;
-    float light         : TEXCOORD1;
+    float light         : TEXCOORD0;
+    float2 uv           : TEXCOORD1;
 };
 
 Varyings Vertex(Attributes IN)
@@ -37,6 +43,7 @@ Varyings Vertex(Attributes IN)
     float light = GetLighting(IN.positionOS, IN.normalOS);
     float noise = SampleTexture(IN.uv, _NoiseMap, sampler_NoiseMap);
     OUT.light = SampleTexture(0, light * noise, _LightMap, sampler_LightMap);
+    OUT.uv = IN.uv;
     return OUT;
 }
 
@@ -51,7 +58,7 @@ float3 EvaluateLightingRamp(float light)
 
 float4 Fragment(Varyings IN) : SV_Target
 {    
-    float3 col = EvaluateLightingRamp(IN.light);
+    float3 col = EvaluateLightingRamp(IN.light * _Scaler * SampleTexture(IN.uv, _Texture, sampler_Texture));
     return float4(col, 1);
 }
 

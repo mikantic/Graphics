@@ -4,7 +4,7 @@ Shader "Custom/Outlines"
     {
         _MainTex ("MainTex", 2D) = "white" {}
         _Color("Color", Color) = (1, 0, 0, 1)
-        _Threshold("Threshold", Range(0.0001, 0.1)) = 0.01
+        _Threshold("Threshold", Range(0.0001, 1)) = 0.01
     }
 
     SubShader

@@ -10,6 +10,9 @@ Shader "Custom/Shading"
 
         _LightMap ("LightMap", 2D) = "white" {}
         _NoiseMap ("NoiseMap", 2D) = "white" {}
+        _Texture ("Texture", 2D) = "white" {}
+
+        _Scaler ("Scaler", Float) = 1
     }
 
     SubShader

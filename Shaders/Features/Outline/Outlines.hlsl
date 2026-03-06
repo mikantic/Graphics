@@ -30,8 +30,8 @@ Varyings Vertex(Attributes IN)
 
 bool SampleDepthInDirection(float depth, float2 uv, float2 texel, int factor)
 {
-    float sample = RawDepth(uv + texel);
-    float reverse = RawDepth(uv - texel);
+    float sample = Linear01Depth(uv + texel);
+    float reverse = Linear01Depth(uv - texel);
 
     float sampleDelta = sample - depth;
     float sampleReverseDelta = reverse - depth;
@@ -45,7 +45,7 @@ bool SampleDepthInDirection(float depth, float2 uv, float2 texel, int factor)
 float4 Fragment(Varyings IN) : SV_Target
 {
     float2 texel = 1.0 / _ScreenSize.xy;
-    float depth  = RawDepth(IN.uv);
+    float depth  = Linear01Depth(IN.uv);
     float2 pixels;
 
     // Top Row

@@ -18,6 +18,21 @@ Shader "Custom/Crystal"
     {
         Pass
         {
+            // Full Shading
+            Tags { "LightMode" = "DepthOnly" }
+
+            HLSLPROGRAM
+
+            #pragma vertex Vertex
+            #pragma fragment Fragment
+
+            #include "../Shadows/Shadows.hlsl"
+
+            ENDHLSL
+        }
+        
+        Pass
+        {
             Tags 
             { 
                 "LightMode" = "UniversalForward"
