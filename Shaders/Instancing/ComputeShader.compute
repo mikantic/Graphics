@@ -1,0 +1,76 @@
+#pragma kernel CSMain
+
+struct Triangle
+{
+    float3 a;
+    float3 b;
+    float3 c;
+};
+
+struct Instance
+{
+    float3 position;
+    float4 rotation;
+    float scale;
+};
+
+StructuredBuffer<Triangle> _Triangles;
+AppendStructuredBuffer<Instance> _Instances;
+
+int _TriangleCount;
+int _InstancesPerTriangle;
+float3 _CameraPosition;
+float _Range;
+float _Scale;
+float4 _FrustumPlanes[6]; 
+
+// Simple hash-based random function
+float Random(uint seed)
+{
+    return frac(sin(seed) * 43758.5453);
+}
+
+[numthreads(64,1,1)]
+void CSMain(uint3 id3 : SV_DispatchThreadID)
+{
+    uint id = id3.x;
+    if (id >= _TriangleCount) return;
+
+    Triangle tri = _Triangles[id];
+    float3 center = (tri.a + tri.b + tri.c) / 3;
+
+    float3 toCam = center - _CameraPosition;
+    if (length(toCam) > _Range) return;
+
+    // Frustum culling
+    for (int i = 0; i < 6; i++)
+    {
+        float4 plane = _FrustumPlanes[i];
+        if (dot(float3(plane.xyz), center) + plane.w < -5)
+            return;
+    }
+
+    float3 normal = normalize(cross(tri.b - tri.a, tri.c - tri.a));
+
+    for (int i = 0; i < _InstancesPerTriangle; i++)
+    {
+        Instance instance;
+
+        // Random position on triangle using barycentric coordinates
+        uint seed = id * 734287 + i * 912783;
+        float u = Random(seed);
+        float v = Random(seed * 12345);
+        if (u + v > 1) { u = 1 - u; v = 1 - v; }
+        instance.position = tri.a + (tri.b - tri.a) * u + (tri.c - tri.a) * v;
+
+        // Random rotation around normal
+        float angle = Random(seed * 54321) * 6.2831853; // 0-2PI
+        float s = sin(angle * 0.5);
+        float c = cos(angle * 0.5);
+        instance.rotation = float4(normal.x * s, normal.y * s, normal.z * s, c);
+
+        instance.scale = _Scale;
+
+        _Instances.Append(instance);
+    }
+}

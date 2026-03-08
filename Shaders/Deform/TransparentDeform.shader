@@ -1,4 +1,4 @@
-Shader "Graphics/Transparent"
+Shader "Graphics/TransparentDeform"
 {
     Properties
     {
@@ -11,6 +11,10 @@ Shader "Graphics/Transparent"
         _Cast ("Cast", Color) = (1, 1, 1, 1)
 
         _Scaler ("Scaler", Float) = 1
+
+        _Deform ("Deform", 2D) = "white" {}
+        _Altitude ("Altitude", Float) = 0
+
         _Alpha ("Alpha", Range(0, 1)) = 0.75
 
         _Rim ("Rim", Float) = 5
@@ -33,10 +37,16 @@ Shader "Graphics/Transparent"
             
             HLSLPROGRAM
 
-            #pragma vertex Vertex
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_SCREEN
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHTS
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
+
+            #pragma vertex DeformVertex
             #pragma fragment TransparentFragment
 
-            #include "Transparent.hlsl"
+            #include "TransparentDeform.hlsl"
             
             ENDHLSL
         }

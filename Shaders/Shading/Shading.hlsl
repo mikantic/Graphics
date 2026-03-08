@@ -24,12 +24,13 @@ struct Varyings {
 Varyings Vertex(Attributes IN)
 {
     Varyings OUT;
-    GetPositionData(IN.positionOS, OUT.positionCS,OUT.positionWS);
+    GetPositionData(IN.positionOS, OUT.positionCS, OUT.positionWS);
     OUT.normalWS = GetNormalWS(IN.normalOS);
-    OUT.shadowCoord = GetShadowCoord(IN.positionOS);
+    OUT.shadowCoord = GetShadowCoord(OUT.positionWS);   // FIX
     OUT.uv = IN.uv;
     return OUT;
 }
+
 
 float4 Fragment(Varyings IN) : SV_Target
 {    

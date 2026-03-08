@@ -7,6 +7,7 @@
 
 #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
 #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+#pragma multi_compile _ _MAIN_LIGHT_SHADOWS_SCREEN
 
 #pragma multi_compile_fragment _ _ADDITIONAL_LIGHTS
 #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
@@ -17,17 +18,9 @@ float4 _Core;
 
 float _Scaler;
 
-float4 GetShadowCoord(float3 positionOS)
+float4 GetShadowCoord(float3 positionWS)
 {
-    VertexPositionInputs position = GetVertexPositionInputs(positionOS);
-    return GetShadowCoord(position);
-}
-
-float GetLighting(float3 normalWS, float4 shadowCoord, out float NdotL)
-{
-    Light mainLight = GetMainLight(shadowCoord);
-    NdotL = saturate(dot(normalWS, mainLight.direction));
-    return NdotL * mainLight.shadowAttenuation;
+    return TransformWorldToShadowCoord(positionWS);
 }
 
 float GetLighting(float3 normalWS, float4 shadowCoord, float3 positionWS, out float NdotL)

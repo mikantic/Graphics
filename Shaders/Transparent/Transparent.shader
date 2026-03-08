@@ -1,4 +1,4 @@
-Shader "Graphics/Shading"
+Shader "Graphics/Transparent"
 {
     Properties
     {
@@ -11,6 +11,7 @@ Shader "Graphics/Shading"
         _Cast ("Cast", Color) = (1, 1, 1, 1)
 
         _Scaler ("Scaler", Float) = 1
+        _Alpha ("Alpha", Range(0, 1)) = 0.75
 
         _Rim ("Rim", Float) = 5
         _RimAngle ("Rime Angle", Float) = 0.7
@@ -24,17 +25,24 @@ Shader "Graphics/Shading"
             { 
                 "LightMode" = "UniversalForward"
                 "RenderPipeline"="UniversalPipeline"
-                "RenderType" = "Opaque"
+                "RenderType" = "Transparent"
             }
             ZWrite On
             ZTest LEqual
+            Blend SrcAlpha OneMinusSrcAlpha
             
             HLSLPROGRAM
 
-            #pragma vertex Vertex
-            #pragma fragment Fragment
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_SCREEN
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHTS
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
 
-            #include "Shading.hlsl"
+            #pragma vertex Vertex
+            #pragma fragment TransparentFragment
+
+            #include "Transparent.hlsl"
             
             ENDHLSL
         }

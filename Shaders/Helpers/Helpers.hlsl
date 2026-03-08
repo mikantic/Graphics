@@ -21,7 +21,7 @@ float3 GetPositionWS(float4 positionOS)
 
 void GetPositionData(float4 positionOS, out float4 positionCS, out float3 positionWS)
 {
-    VertexPositionInputs pos = GetVertexPositionInputs(positionOS);
+    VertexPositionInputs pos = GetVertexPositionInputs(positionOS.xyz);
     positionCS = pos.positionCS;
     positionWS = pos.positionWS;
 }

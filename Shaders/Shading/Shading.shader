@@ -1,4 +1,4 @@
-Shader "Graphics/TransparentDeform"
+Shader "Graphics/Shading"
 {
     Properties
     {
@@ -12,11 +12,6 @@ Shader "Graphics/TransparentDeform"
 
         _Scaler ("Scaler", Float) = 1
 
-        _Deform ("Deform", 2D) = "white" {}
-        _Altitude ("Altitude", Float) = 0
-
-        _Alpha ("Alpha", Range(0, 1)) = 0.75
-
         _Rim ("Rim", Float) = 5
         _RimAngle ("Rime Angle", Float) = 0.7
     }
@@ -29,18 +24,23 @@ Shader "Graphics/TransparentDeform"
             { 
                 "LightMode" = "UniversalForward"
                 "RenderPipeline"="UniversalPipeline"
-                "RenderType" = "Transparent"
+                "RenderType" = "Opaque"
             }
             ZWrite On
             ZTest LEqual
-            Blend SrcAlpha OneMinusSrcAlpha
             
             HLSLPROGRAM
 
-            #pragma vertex DeformVertex
-            #pragma fragment TransparentFragment
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_SCREEN
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHTS
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
 
-            #include "TransparentDeform.hlsl"
+            #pragma vertex Vertex
+            #pragma fragment Fragment
+
+            #include "Shading.hlsl"
             
             ENDHLSL
         }
