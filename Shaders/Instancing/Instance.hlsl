@@ -43,7 +43,7 @@ Varyings InstanceVertex(Attributes IN, uint instanceID : SV_InstanceID)
 float4 InstanceFragment(Varyings IN) : SV_TARGET
 {
     float4 OUT = Fragment(IN);
-    clip(SampleTexture(IN.uv, _Shape, sampler_Shape) - 0.05);
+    clip(SampleTexture(TRANSFORM_TEX(IN.uv, _Shape), _Shape, sampler_Shape) - 0.01);
     return OUT;
 }
 

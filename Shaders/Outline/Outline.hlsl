@@ -21,13 +21,16 @@ struct Varyings
     float2 texel        : TEXCOORD1;
 };
 
-
 bool ValidateDepth(float center, float2 uv, float2 offset)
 {
-    float depth = Linear01Depth(uv + offset);
-    float opposite = Linear01Depth(uv - offset);
-    return center - depth >= _Threshold && opposite - center < _Threshold;
-};
+    float depth = LinearEyeDepth(uv + offset);
+    float opposite = LinearEyeDepth(uv - offset);
+
+    float diff = (center - depth) / max(center, depth);
+    float opp  = (opposite - center) / max(opposite, center);
+
+    return diff >= _Threshold && opp < _Threshold;
+}
 
 Varyings Vertex(Attributes IN)
 {
@@ -46,7 +49,7 @@ Varyings Vertex(Attributes IN)
 
 float4 Fragment(Varyings IN) : SV_Target
 {   
-    float center = Linear01Depth(IN.uv);
+    float center = LinearEyeDepth(IN.uv);
 
     float4 color = SampleTexture(IN.uv) * _Darkness;
     color.a = 1;
@@ -61,7 +64,7 @@ float4 Fragment(Varyings IN) : SV_Target
     if (ValidateDepth(center, IN.uv, float2(IN.texel.x * _Width, IN.texel.y * _Width))) return color;
     if (ValidateDepth(center, IN.uv, float2(IN.texel.x * _Width, -IN.texel.y * _Width))) return color;
 
-    return (0, 0, 0, 0);
+    return float4(0, 0, 0, 0);
 }
 
 #endif

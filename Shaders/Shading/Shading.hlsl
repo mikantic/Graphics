@@ -26,7 +26,7 @@ Varyings Vertex(Attributes IN)
     Varyings OUT;
     GetPositionData(IN.positionOS, OUT.positionCS, OUT.positionWS);
     OUT.normalWS = GetNormalWS(IN.normalOS);
-    OUT.shadowCoord = GetShadowCoord(OUT.positionWS);   // FIX
+    OUT.shadowCoord = GetShadowCoord(OUT.positionWS);
     OUT.uv = IN.uv;
     return OUT;
 }

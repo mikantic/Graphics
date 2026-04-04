@@ -35,7 +35,7 @@ Material:
     m_Floats:
     - _Darkness: 0.5
     - _Scratch: 0.93
-    - _Threshold: 0.0001
+    - _Threshold: 0.1
     - _Width: 3
     m_Colors: []
   m_BuildTextureStacks: []
