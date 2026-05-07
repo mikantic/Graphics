@@ -23,8 +23,8 @@ struct Varyings
 
 bool ValidateDepth(float center, float2 uv, float2 offset)
 {
-    float depth = LinearEyeDepth(uv + offset);
-    float opposite = LinearEyeDepth(uv - offset);
+    float depth = RawDepth(uv + offset);
+    float opposite = RawDepth(uv - offset);
 
     float diff = (center - depth) / max(center, depth);
     float opp  = (opposite - center) / max(opposite, center);
@@ -49,7 +49,7 @@ Varyings Vertex(Attributes IN)
 
 float4 Fragment(Varyings IN) : SV_Target
 {   
-    float center = LinearEyeDepth(IN.uv);
+    float center = RawDepth(IN.uv);
 
     float4 color = SampleTexture(IN.uv) * _Darkness;
     color.a = 1;

@@ -25,7 +25,7 @@ Material:
     m_TexEnvs:
     - _Deform:
         m_Texture: {fileID: 2800000, guid: 02459a80c538f6341bc072118540227b, type: 3}
-        m_Scale: {x: 1, y: 2}
+        m_Scale: {x: 7.04, y: 8.37}
         m_Offset: {x: 4.34, y: 0}
     - _Texture:
         m_Texture: {fileID: 2800000, guid: f61cdf58e42bdd846b0122613ebd0193, type: 3}
@@ -33,7 +33,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Altitude: 0.3
+    - _Altitude: 0.2
     - _Rim: 5
     - _RimAngle: 0.25
     - _Scaler: 1

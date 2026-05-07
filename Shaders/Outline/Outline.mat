@@ -28,14 +28,14 @@ Material:
         m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: ed4422b6ffb8a4546b94b7cae5d826a0, type: 3}
-        m_Scale: {x: 5, y: 5}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Darkness: 0.5
+    - _Darkness: 0
     - _Scratch: 0.93
-    - _Threshold: 0.1
+    - _Threshold: 0.03
     - _Width: 3
     m_Colors: []
   m_BuildTextureStacks: []
