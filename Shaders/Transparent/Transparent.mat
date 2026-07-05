@@ -29,13 +29,13 @@ Material:
         m_Offset: {x: 8.99, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.5
+    - _Alpha: 0.567
     - _Darkness: 1.03
     - _DepthFade: 0.46
     - _Hull: -0.02
-    - _Rim: 5
-    - _RimAngle: 0.7
-    - _Scaler: 7.74
+    - _Rim: 10
+    - _RimAngle: 0.5
+    - _Scaler: 1
     - _Threshold: 2.19
     - _Width: 14.42
     m_Colors:

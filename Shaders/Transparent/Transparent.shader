@@ -26,6 +26,7 @@ Shader "Graphics/Transparent"
                 "LightMode" = "UniversalForward"
                 "RenderPipeline"="UniversalPipeline"
                 "RenderType" = "Transparent"
+                "Queue" = "Transparent"
             }
             ZWrite On
             ZTest LEqual

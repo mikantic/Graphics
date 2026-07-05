@@ -30,9 +30,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Hull: 6.13
-    - _Rim: 5
-    - _RimAngle: 0.7
-    - _Scaler: 0.79
+    - _Rim: 10
+    - _RimAngle: 0.5
+    - _Scaler: 0.88
     m_Colors:
     - _Cast: {r: 1, g: 1, b: 1, a: 1}
     - _Core: {r: 1, g: 1, b: 1, a: 1}

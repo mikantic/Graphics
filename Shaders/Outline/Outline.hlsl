@@ -21,16 +21,30 @@ struct Varyings
     float2 texel        : TEXCOORD1;
 };
 
-bool ValidateDepth(float center, float2 uv, float2 offset)
+bool CheckForEdge(float center, float2 uv, float2 offset)
 {
-    float depth = RawDepth(uv + offset);
-    float opposite = RawDepth(uv - offset);
+    float depth = Linear01Depth(uv + offset);
+    float opposite = Linear01Depth(uv - offset);
 
-    float diff = (center - depth) / max(center, depth);
-    float opp  = (opposite - center) / max(opposite, center);
+    float diff = (depth - center);
+    float opp = (opposite - center);
 
-    return diff >= _Threshold && opp < _Threshold;
-}
+    return (diff / center <= _Threshold && -opp / opposite > _Threshold) || (-diff / depth > _Threshold && opp / center <= _Threshold);
+};
+
+bool CheckDirectionForEdge(float center, float2 uv, float2 texel)
+{
+    [loop]
+    for (int i = 1; i <= _Width; i++)
+    {
+        if (CheckForEdge(center, uv, i * texel))
+        {
+            return true;
+        }
+    }
+
+    return false;
+};
 
 Varyings Vertex(Attributes IN)
 {
@@ -49,22 +63,17 @@ Varyings Vertex(Attributes IN)
 
 float4 Fragment(Varyings IN) : SV_Target
 {   
-    float center = RawDepth(IN.uv);
+    float center = Linear01Depth(IN.uv);
 
     float4 color = SampleTexture(IN.uv) * _Darkness;
     color.a = 1;
+    
+    if (CheckDirectionForEdge(center, IN.uv, float2(0, IN.texel.y))) return color;
+    if (CheckDirectionForEdge(center, IN.uv, float2(IN.texel.x, 0))) return color;
+    if (CheckDirectionForEdge(center, IN.uv, float2(-IN.texel.x, IN.texel.y))) return color;
+    if (CheckDirectionForEdge(center, IN.uv, float2(IN.texel.x, IN.texel.y))) return color;
 
-    if (ValidateDepth(center, IN.uv, float2(0, IN.texel.y * _Width))) return color;
-    if (ValidateDepth(center, IN.uv, float2(-IN.texel.x * _Width, 0))) return color;
-    if (ValidateDepth(center, IN.uv, float2(IN.texel.x * _Width, 0))) return color;
-    if (ValidateDepth(center, IN.uv, float2(0, -IN.texel.y * _Width))) return color;
-
-    if (ValidateDepth(center, IN.uv, float2(-IN.texel.x * _Width, IN.texel.y * _Width))) return color;
-    if (ValidateDepth(center, IN.uv, float2(-IN.texel.x * _Width, -IN.texel.y * _Width))) return color;
-    if (ValidateDepth(center, IN.uv, float2(IN.texel.x * _Width, IN.texel.y * _Width))) return color;
-    if (ValidateDepth(center, IN.uv, float2(IN.texel.x * _Width, -IN.texel.y * _Width))) return color;
-
-    return float4(0, 0, 0, 0);
+    return 0;
 }
 
 #endif
