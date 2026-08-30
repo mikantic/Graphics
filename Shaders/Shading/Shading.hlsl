@@ -36,9 +36,10 @@ float4 Fragment(Varyings IN) : SV_Target
 {    
     float NdotL;
     float light = GetLighting(IN.normalWS, IN.shadowCoord, IN.positionWS, NdotL); 
-    float tex = SampleTexture(TRANSFORM_TEX(IN.uv, _Texture), _Texture, sampler_Texture);
-    float3 color = EvaluateLightingRamp(light * tex * _Scaler) * tex;
-    color = GetColorWithRim(color, NdotL, IN.positionWS, IN.normalWS);
+    float tex = SampleTexture(IN.uv);
+    float3 color = EvaluateLightingRamp(light * tex * _Scaler);
+    if (light > 0)
+        color = GetColorWithRim(color, NdotL, IN.positionWS, IN.normalWS);
     return float4(color, 1);
 }
 

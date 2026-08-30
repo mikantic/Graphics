@@ -3,9 +3,9 @@
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
-TEXTURE2D(_Texture);
-SAMPLER(sampler_Texture);
-float4 _Texture_ST;
+TEXTURE2D(_MainTex);
+SAMPLER(sampler_MainTex);
+float4 _MainTex_ST;
 
 float SampleTexture(float2 uv, Texture2D map, SamplerState sample)
 {
@@ -14,7 +14,7 @@ float SampleTexture(float2 uv, Texture2D map, SamplerState sample)
 
 float SampleTexture(float2 uv)
 {
-    return SampleTexture(TRANSFORM_TEX(uv, _Texture), _Texture, sampler_Texture);
+    return SampleTexture(TRANSFORM_TEX(uv, _MainTex), _MainTex, sampler_MainTex);
 }
 
 

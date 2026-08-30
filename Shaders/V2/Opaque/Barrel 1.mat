@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Barrel 1
+  m_Shader: {fileID: 4800000, guid: c986cbe9f6dca0a42809802036dfbcf0, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _HatchMap:
+        m_Texture: {fileID: 2800000, guid: 64c736ad79e72bc41b9fdb7eb3cf67fe, type: 3}
+        m_Scale: {x: 40, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HatchTex:
+        m_Texture: {fileID: 2800000, guid: c20f06f384b5b0243853cc04e607abe7, type: 3}
+        m_Scale: {x: 10, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 82ce0ab1c583ac441ad373c8a58d25b7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: 4340a9f8554564643979396227f3902d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _HatchScaler: 1
+    - _HatchWidth: 0.069
+    - _NoiseScaler: 1
+    - _RimAngle: 0
+    - _RimWidth: 0
+    m_Colors:
+    - _Dark: {r: 0.4, g: 0.1882353, b: 0.11764706, a: 1}
+    - _Darkest: {r: 0.2509804, g: 0.09411765, b: 0.0627451, a: 1}
+    - _Highlight: {r: 0.8509804, g: 0.6156863, b: 0.3764706, a: 1}
+    - _Light: {r: 0.7019608, g: 0.45490196, b: 0.28235295, a: 1}
+    - _Medium: {r: 0.54901963, g: 0.3019608, b: 0.19215687, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

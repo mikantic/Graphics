@@ -1,8 +1,8 @@
-Shader "Graphics/Transparent"
+Shader "Graphics/Transparent_Obsolete"
 {
     Properties
     {
-        _Texture ("Texture", 2D) = "white" {}
+        _MainTex ("Texture", 2D) = "white" {}
         
         _Shine ("Shine", Color) = (1, 1, 1, 1)
         _Lit ("Lit", Color) = (1, 1, 1, 1)

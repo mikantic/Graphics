@@ -2,7 +2,7 @@ Shader "Graphics/Outline"
 {
     Properties
     {
-        _Texture ("Texture", 2D) = "white" {}
+        _MainTex ("Texture", 2D) = "white" {}
         _Threshold ("Threshold", Float) = 1
         _Width ("Width", Float) = 3
         _Darkness ("Darkness", Float) = 1
@@ -20,6 +20,8 @@ Shader "Graphics/Outline"
             Blend SrcAlpha OneMinusSrcAlpha
 
             HLSLPROGRAM
+            #pragma multi_compile_fog
+            
             #pragma vertex Vertex
             #pragma fragment Fragment
 

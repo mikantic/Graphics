@@ -44,7 +44,7 @@ namespace Graphics.Palettes
             {
                 if (_instance == null)
                 {
-                    string path = $"UI/Palette/Objects/{typeof(T).Name}";
+                    string path = $"Palette/{typeof(T).Name}";
                     _instance = Resources.Load<Palette<T>>(path);
                     if (_instance == null) Debug.LogError($"{path} not found");
                 }

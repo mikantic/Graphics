@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrassyTerrain
+  m_Name: Basic
   m_Shader: {fileID: 4800000, guid: 9021733a4f2ee604c82e823efbb5d80a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -23,20 +23,29 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Deform:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Altitude: 0
     - _Rim: 5
     - _RimAngle: 0.7
     - _Scaler: 1
     m_Colors:
-    - _Cast: {r: 1, g: 1, b: 1, a: 1}
-    - _Core: {r: 1, g: 1, b: 1, a: 1}
-    - _Lit: {r: 1, g: 1, b: 1, a: 1}
-    - _Shine: {r: 1, g: 1, b: 1, a: 1}
-    - _Tone: {r: 1, g: 1, b: 1, a: 1}
+    - _Cast: {r: 0.3254902, g: 0.4117647, b: 0.5019608, a: 1}
+    - _Core: {r: 0.41568628, g: 0.52156866, b: 0.6, a: 1}
+    - _Lit: {r: 0.6392157, g: 0.75686276, b: 0.8, a: 1}
+    - _Shine: {r: 0.7647059, g: 0.8784314, b: 0.9019608, a: 1}
+    - _Tone: {r: 0.5254902, g: 0.6392157, b: 0.7019608, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

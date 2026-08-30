@@ -19,7 +19,9 @@ struct Varyings
     float4 positionCS   : SV_POSITION;
     float2 uv           : TEXCOORD0;
     float2 texel        : TEXCOORD1;
+    float fog           : TEXCOORD2;
 };
+
 
 bool CheckForEdge(float center, float2 uv, float2 offset)
 {
@@ -58,13 +60,27 @@ Varyings Vertex(Attributes IN)
 
     OUT.texel = 1.0 / _ScreenSize;
 
+    OUT.fog = 0;
+    #if defined(FOG_LINEAR)
+        //float start = -unity_FogParams.w / unity_FogParams.z;
+        float end = unity_FogParams.w / -unity_FogParams.z;
+        OUT.fog = end;
+    #endif
+
     return OUT;
 }
 
 float4 Fragment(Varyings IN) : SV_Target
 {   
-    float center = Linear01Depth(IN.uv);
+    float raw = RawDepth(IN.uv);
+    float eye = LinearEyeDepth(raw, _ZBufferParams);
 
+    #if defined(FOG_LINEAR)
+        if (eye >= IN.fog)
+            return 0;
+    #endif
+
+    float center = Linear01Depth(raw, _ZBufferParams);
     float4 color = SampleTexture(IN.uv) * _Darkness;
     color.a = 1;
     
