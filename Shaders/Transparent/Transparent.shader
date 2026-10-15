@@ -1,20 +1,15 @@
-Shader "Graphics/Transparent_Obsolete"
+Shader "Graphics/Transparent"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        _MainTex ("Texture", 2D) = "Empty" {}
         
-        _Shine ("Shine", Color) = (1, 1, 1, 1)
-        _Lit ("Lit", Color) = (1, 1, 1, 1)
-        _Tone ("Tone", Color) = (1, 1, 1, 1)
-        _Core ("Core", Color) = (1, 1, 1, 1)
-        _Cast ("Cast", Color) = (1, 1, 1, 1)
+        _Light ("Light", Color) = (1, 1, 1, 1)
+        _Medium ("Medium", Color) = (1, 1, 1, 1)
+        _Dark ("Dark", Color) = (1, 1, 1, 1)
 
-        _Scaler ("Scaler", Float) = 1
+
         _Alpha ("Alpha", Range(0, 1)) = 0.75
-
-        _Rim ("Rim", Float) = 5
-        _RimAngle ("Rime Angle", Float) = 0.7
     }
 
     SubShader
@@ -39,6 +34,7 @@ Shader "Graphics/Transparent_Obsolete"
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile_fragment _ _ADDITIONAL_LIGHTS
             #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile_fog
 
             #pragma vertex Vertex
             #pragma fragment TransparentFragment
@@ -55,7 +51,7 @@ Shader "Graphics/Transparent_Obsolete"
             HLSLPROGRAM
             #pragma vertex Vertex
             #pragma fragment Fragment
-            #include "../Helpers/Default.hlsl"
+            #include "../Depth/Default.hlsl"
             ENDHLSL
         }
     }

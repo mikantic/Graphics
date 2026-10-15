@@ -1,7 +1,7 @@
 #ifndef TRANSPARENT_INCLUDED
 #define TRANSPARENT_INCLUDED
 
-#include "../Shading/Shading.hlsl"
+#include "../Opaque/Opaque.hlsl"
 
 float _Alpha;
 

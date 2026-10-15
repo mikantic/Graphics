@@ -1,13 +1,15 @@
 #ifndef OUTLINE_INCLUDED
 #define OUTLINE_INCLUDED
 
-#include "../Helpers/Helpers.hlsl"
-#include "../Helpers/Textures.hlsl"
-#include "../Helpers/Depth.hlsl"
+#include "../Helper/Helper.hlsl"
+#include "../Texture/Helper.hlsl"
+#include "../Depth/Helper.hlsl"
 
+float4 _Color;
 float _Threshold;
 float _Width;
-float _Darkness;
+
+Texture2D<uint> _OutlineIdBuffer;
 
 struct Attributes
 {
@@ -81,13 +83,14 @@ float4 Fragment(Varyings IN) : SV_Target
     #endif
 
     float center = Linear01Depth(raw, _ZBufferParams);
-    float4 color = SampleTexture(IN.uv) * _Darkness;
-    color.a = 1;
+
+    uint2 pixel = uint2(IN.positionCS.xy);
+    uint objectId = _OutlineIdBuffer.Load(int3(pixel, 0));
     
-    if (CheckDirectionForEdge(center, IN.uv, float2(0, IN.texel.y))) return color;
-    if (CheckDirectionForEdge(center, IN.uv, float2(IN.texel.x, 0))) return color;
-    if (CheckDirectionForEdge(center, IN.uv, float2(-IN.texel.x, IN.texel.y))) return color;
-    if (CheckDirectionForEdge(center, IN.uv, float2(IN.texel.x, IN.texel.y))) return color;
+    if (CheckDirectionForEdge(center, IN.uv, float2(0, IN.texel.y))) return _Color;
+    if (CheckDirectionForEdge(center, IN.uv, float2(IN.texel.x, 0))) return _Color;
+    if (CheckDirectionForEdge(center, IN.uv, float2(-IN.texel.x, IN.texel.y))) return _Color;
+    if (CheckDirectionForEdge(center, IN.uv, float2(IN.texel.x, IN.texel.y))) return _Color;
 
     return 0;
 }
