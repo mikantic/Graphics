@@ -2,15 +2,16 @@ using UnityEngine;
 
 namespace Graphics
 {
-    [RequireComponent(typeof(UnityEngine.Renderer))]
-    public class Renderer : MonoBehaviour
+    public class UniqueMaterialProperty : MonoBehaviour
     {
-        [SerializeField] protected Color color;
-        [SerializeField] protected Tone range = Tone.Medium;
-        [SerializeField] protected Texture2D texture;
+        [SerializeField] protected Color color = Color.White;
+        [SerializeField] protected Tone tone = Tone.Medium;
+        [SerializeField] protected Texture texture;
 
         protected UnityEngine.Renderer target;
         protected MaterialPropertyBlock block;
+
+        protected virtual int Index() => 0;
 
         protected void Awake()
         {
@@ -29,27 +30,27 @@ namespace Graphics
             if (target == null || block == null)
             return;
 
-            target.GetPropertyBlock(block);
+            target.GetPropertyBlock(block, Index());
+            Apply(block);
+            target.SetPropertyBlock(block, Index());
+        }
 
-            block.SetColor("_Light", Palette.OfType(color, Tone.Light, range));
-            block.SetColor("_Medium", Palette.OfType(color, Tone.Medium, range));
-            block.SetColor("_Dark", Palette.OfType(color, Tone.Dark, range));
-
+        protected virtual void Apply(MaterialPropertyBlock block)
+        {
+            block.SetColor("_Light", Palette.OfType(color, Tone.Light, tone));
+            block.SetColor("_Medium", Palette.OfType(color, Tone.Medium, tone));
+            block.SetColor("_Dark", Palette.OfType(color, Tone.Dark, tone));
             block.SetTexture("_MainTex", texture == null ? Palette.DefaultTexture : texture);
-
-            target.SetPropertyBlock(block);
         }
 
 #if UNITY_EDITOR
-
         protected void OnValidate()
         {
             if (Application.isPlaying) return;
             Initialize();
             Apply();
         }
-
 #endif
 
-    }   
+    }
 }

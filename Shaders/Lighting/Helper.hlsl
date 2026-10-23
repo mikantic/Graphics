@@ -25,7 +25,7 @@ float GetLighting(float3 normalWS, float4 shadowCoord, float3 positionWS, out fl
 
     Light mainLight = GetMainLight(shadowCoord);
     float mainNdotL = saturate(dot(normalWS, mainLight.direction));
-    totalLight += mainNdotL * mainLight.shadowAttenuation;
+    totalLight += mainNdotL * (mainLight.shadowAttenuation * 0.75 + 0.25);
 
     NdotL = mainNdotL;
     uint lightCount = GetAdditionalLightsCount();
@@ -38,7 +38,7 @@ float GetLighting(float3 normalWS, float4 shadowCoord, float3 positionWS, out fl
         totalLight += ndotl * attenuation;
     }
 
-    return totalLight;
+    return totalLight * .75;
 }
 
 float4 GetColor(float value)

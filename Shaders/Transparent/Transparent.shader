@@ -8,7 +8,6 @@ Shader "Graphics/Transparent"
         _Medium ("Medium", Color) = (1, 1, 1, 1)
         _Dark ("Dark", Color) = (1, 1, 1, 1)
 
-
         _Alpha ("Alpha", Range(0, 1)) = 0.75
     }
 
